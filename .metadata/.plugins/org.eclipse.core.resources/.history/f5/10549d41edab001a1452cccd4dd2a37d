@@ -1,0 +1,24 @@
+package br.com.gerenciador.alura;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class TestaMap {
+
+	public static void main(String[] args) {
+	
+		Map<Integer, String> map = new LinkedHashMap<>();
+		
+		map.put(1,"bruno");
+		map.put(2,"bruno2");
+		map.put(3,"bruno3");
+		
+		System.out.println(map);
+		map.remove(1);
+		map.remove(2);
+		map.remove(3);
+		System.out.println(map);
+		
+	}
+
+}

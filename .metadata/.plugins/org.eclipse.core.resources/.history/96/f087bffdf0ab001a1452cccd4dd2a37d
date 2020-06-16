@@ -1,0 +1,41 @@
+package br.com.gerenciador.alura;
+
+import java.time.LocalDate;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class Banco {
+
+	private static Map<Integer,Empresa> lista =  new LinkedHashMap<Integer, Empresa>();
+	private static int id = 1;
+
+	public void adicionaBanco(Empresa empresa) {
+		empresa.setId(Banco.id++);
+		Banco.lista.put(id, empresa);
+	}
+
+	public Map<Integer,Empresa> getEmpresas() {
+		return Banco.lista;
+	}
+	
+	
+	static {
+		 
+		  Empresa empresa = new Empresa();
+		  empresa.setId(Banco.id++);
+		  empresa.setNome("Alura");
+		  empresa.setData(LocalDate.now());
+		  Banco.lista.put(id, empresa);
+		  Empresa empresa2 = new Empresa();
+		  empresa2.setId(Banco.id++);
+		  empresa2.setNome("Caelum");
+		  empresa2.setData(LocalDate.now());		  
+		  Banco.lista.put(id, empresa2);
+		}
+
+
+	public void removeEmpresa(int id) {
+		Banco.lista.remove(id);
+	}
+
+}

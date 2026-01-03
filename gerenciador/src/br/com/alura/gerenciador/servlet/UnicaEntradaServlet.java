@@ -29,6 +29,9 @@ public class UnicaEntradaServlet extends HttpServlet {
 		String nome = null;
 
 		try {
+			if (paramAcao == null || !paramAcao.matches("^[a-zA-Z0-9]+$")) {
+				throw new ServletException("Invalid action parameter");
+			}
 			Class acaoClass = Class.forName("br.com.alura.gerenciador.acao." + paramAcao);
 			Acao acao = (Acao) acaoClass.getDeclaredConstructor().newInstance();
 			nome = acao.executa(request, response);

@@ -47,7 +47,10 @@ public class ControladorFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 
 		try {
-			Class acaoClass = Class.forName("br.com.alura.gerenciador.acao." + paramAcao);
+			if (paramAcao == null || !paramAcao.matches("^[a-zA-Z0-9]+$")) {
+				throw new ServletException("Invalid action parameter");
+			}
+			Class<?> acaoClass = Class.forName("br.com.alura.gerenciador.acao." + paramAcao);
 			Acao acao = (Acao) acaoClass.getDeclaredConstructor().newInstance();
 			nome = acao.executa(httpRequest, httpResponse);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
